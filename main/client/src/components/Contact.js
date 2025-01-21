@@ -11,8 +11,8 @@ function Contact() {
                     <main>
                         <ul>
                             <li>Email: <a href="mailto:miloetz@me.com">miloetz@me.com</a></li>
-                            <li>GitHub: <a href="https://github.com/miloetz" target="_blank">github.com/miloetz</a></li>
-                            <li>LinkedIn: <a href="https://www.linkedin.com/in/miloetz" target="_blank">linkedin.com/in/miloetz</a></li>
+                            <li>GitHub: <a href="https://github.com/miloetz" target="_blank" rel="noreferrer">github.com/miloetz</a></li>
+                            <li>LinkedIn: <a href="https://www.linkedin.com/in/miloetz" target="_blank" rel="noreferrer">linkedin.com/in/miloetz</a></li>
                         </ul>
                     </main>
                 </section>
