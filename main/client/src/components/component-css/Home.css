@@ -1,31 +1,23 @@
-/* Basic styles for the Home component */
-body,
-html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    background: url("/public/assets/pictures/texture_background.jpg") no-repeat center center fixed;
-    background-size: cover;
+.home-container {
     font-family: 'MyCustomFont', sans-serif;
 }
 
-header {
+.home-container header {
     text-align: center;
     padding: 20px;
     color: rgba(164, 164, 164, 0.8);
     font-size: 1em;
 }
 
-h1 {
+.home-container h1 {
     font-size: 2em;
 }
 
-p {
+.home-container p {
     font-size: 1.7em;
 }
 
-img {
+.home-container img {
     width: 250px;
     height: auto;
     margin-top: 20px;

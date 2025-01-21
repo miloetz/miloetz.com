@@ -64,3 +64,7 @@
 .menu-button.open {
     animation: hamburger 4s infinite;
 }
+
+.menu-button.close {
+    animation: hamburger 4s infinite;
+}

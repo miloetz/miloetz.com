@@ -56,7 +56,11 @@ footer {
 }
 
 .menu-button.open {
-  transform: rotate(90deg);
+  transform: rotate(20deg);
+}
+
+.menu-button.close {
+  transform: rotate(0deg);
 }
 
 .App-nav {
@@ -73,13 +77,22 @@ footer {
   max-height: 100px;
 }
 
+.App-nav.close {
+  max-height: 0;
+}
+
 .App-nav a {
   color: rgba(164, 164, 164, 0.8);
   text-decoration: none;
   font-size: 1.5em;
   margin: 0 20px;
   opacity: 0;
+  transform: translateY(-20px);
   transition: opacity 0.3s ease, opacity 0.3s ease;
+}
+
+.App-nav.close a {
+  transform: translateY(0px);
 }
 
 .App-nav.open a {

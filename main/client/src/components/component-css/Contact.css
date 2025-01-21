@@ -1,10 +1,17 @@
-header {
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-container header {
     text-align: center;
     color: rgba(164, 164, 164, 0.8);
     font-size: 1em;
 }
 
-li {
+.contact-container li {
     list-style-type: none;
     font-size: 1m;
     color: rgba(164, 164, 164, 0.8);

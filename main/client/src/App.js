@@ -19,7 +19,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <WiggleText text="milo etz." />
-          <button className={`menu-button ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+          <button className={`menu-button ${menuOpen ? 'open' : 'close'}`} onClick={toggleMenu}>
             +
           </button>
           <nav className={`App-nav ${menuOpen ? 'open' : ''}`}>

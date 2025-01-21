@@ -3,7 +3,7 @@ import "./component-css/Home.css";
 
 function Home() {
     return (
-        <div>
+        <div className="home-container">
             <header>
                 <img src="https://i.pinimg.com/280x280_RS/60/c0/cf/60c0cfaef408beff62443f332dffb4a5.jpg" alt="milo etz" />
                 <h1>Milo Etz</h1>
