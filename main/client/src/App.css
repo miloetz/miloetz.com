@@ -144,7 +144,7 @@ footer {
   }
 
   .App-nav {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .App-nav a {
