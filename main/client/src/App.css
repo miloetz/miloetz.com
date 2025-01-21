@@ -102,3 +102,58 @@ footer {
 .App-nav a:nth-child(4) {
   transition-delay: 0.4s;
 }
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  .App-header {
+    font-size: 1.5em;
+  }
+
+  .App-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .menu-button {
+    font-size: 1.5em;
+  }
+
+  .App-nav a {
+    font-size: 1.2em;
+    margin: 0 10px;
+  }
+
+  footer {
+    font-size: 0.5em;
+    margin-top: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header {
+    font-size: 1.2em;
+  }
+
+  .App-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .menu-button {
+    font-size: 1.2em;
+  }
+
+  .App-nav {
+    flex-direction: column;
+  }
+
+  .App-nav a {
+    font-size: 1em;
+    margin: 5px 0;
+  }
+
+  footer {
+    font-size: 0.4em;
+    margin-top: 50px;
+  }
+}
