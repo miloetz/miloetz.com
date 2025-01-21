@@ -1,0 +1,33 @@
+/* Basic styles for the Home component */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: url("/public/assets/pictures/texture_background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'MyCustomFont', sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    color: rgba(164, 164, 164, 0.8);
+    font-size: 1em;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+p {
+    font-size: 1.7em;
+}
+
+img {
+    width: 250px;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+}

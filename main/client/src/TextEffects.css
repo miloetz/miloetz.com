@@ -1,0 +1,66 @@
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
+.wiggle-text {
+    display: inline-block;
+    font-size: 2em;
+}
+
+.wiggle-letter {
+    display: inline-block;
+    animation: wiggle 0.9s infinite;
+    animation-delay: calc(2s * var(--wiggle-index));
+}
+
+@keyframes hamburger {
+
+    0%,
+    100% {
+        transform: scaleX(0.8);
+    }
+
+    25% {
+        transform: rotate(30deg);
+    }
+
+    50% {
+        transform: rotate(360deg);
+    }
+
+    75% {
+        transform: scaleY(0.8);
+    }
+
+}
+
+.menu-button {
+    font-family: 'MyCustomFont', sans-serif;
+    background: none;
+    border: none;
+    color: rgba(164, 164, 164, 0.8);
+    font-size: 2em;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 0.5 ease;
+}
+
+.menu-button.open {
+    animation: hamburger 4s infinite;
+}
