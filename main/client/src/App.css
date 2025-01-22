@@ -12,6 +12,10 @@ html {
   background: url("/public/assets/pictures/texture_background.jpg") no-repeat center center fixed;
   background-size: cover;
   font-family: 'MyCustomFont', sans-serif;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .App {
@@ -20,6 +24,10 @@ html {
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .App-header {

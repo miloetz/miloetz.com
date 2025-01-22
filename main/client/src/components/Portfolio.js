@@ -5,8 +5,9 @@ function Portfolio() {
     return (
         <div className="portfolio-container">
             <header>
-                <h2>Portfolio</h2>
-                <p>Welcome to the Portfolio page.</p>
+                <h1>Portfolio</h1>
+                <img src="/assets/pictures/Milo_Etz_ShapeColorTexture.png" alt="Milo Etz Shape Color Texture" />
+                <p>untitled</p>
             </header>
         </div>
     );
