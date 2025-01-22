@@ -48,9 +48,16 @@
     font-size: 1.7em;
 }
 
-@media (max-width: 428px) {
+@media (max-width: 768px) {
+
+    .about-container h2 {
+        font-size: 2em;
+        text-align: center;
+    }
+
     .about-container p {
         padding-left: 20px;
         padding-right: 20px;
+        text-align: center;
     }
 }

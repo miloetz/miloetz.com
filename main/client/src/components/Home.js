@@ -10,6 +10,9 @@ function Home() {
                 </div>
                 <h2>Computer Scientist | Designer | Problem Solver</h2>
                 <p>Blending art, technology, and innovation to build meaningful solutions.</p>
+                <p1>
+                    filler text
+                </p1>
             </header>
         </div>
     );
