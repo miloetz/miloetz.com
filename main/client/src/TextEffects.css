@@ -18,9 +18,42 @@
     }
 }
 
+@keyframes wiggle-nav {
+
+    0%,
+    100% {
+        transform: rotate(-4deg);
+    }
+
+    25% {
+        transform: rotate(2deg);
+    }
+
+    50% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
 .wiggle-text {
     display: inline-block;
     font-size: 2em;
+    text-shadow: 0px 0px 10px rgba(183, 183, 183, 0.5);
+}
+
+.wiggle-text-nav {
+    display: inline-block;
+    font-size: 1em;
+    text-shadow: 0px 0px 10px rgba(127, 127, 127, 0.5);
+}
+
+.wiggle-letter-nav {
+    display: inline-block;
+    animation: wiggle-nav 2s infinite;
+    animation-delay: calc(0.2s * var(--wiggle-index));
 }
 
 .wiggle-letter {

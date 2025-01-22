@@ -1,8 +1,24 @@
+@font-face {
+    font-family: 'fubbick';
+    src: url("/public/assets/fonts/Fubbick.otf") format('opentype');
+}
+
+@font-face {
+    font-family: 'drunk';
+    src: url("/public/assets/fonts/DRUNK.otf") format('opentype');
+}
+
+@font-face {
+    font-family: 'SmglMedium';
+    src: url("/public/assets/fonts/Smgl Medium bold.ttf") format('truetype');
+}
+
 .contact-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: fubbick, sans-serif;
 }
 
 .contact-container header {

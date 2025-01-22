@@ -29,6 +29,7 @@ html {
   justify-content: center;
   color: rgba(164, 164, 164, 0.8);
   font-size: 2em;
+  padding-bottom: 20px;
 }
 
 .App-image {
@@ -48,6 +49,7 @@ footer {
   font-family: 'MyCustomFont', sans-serif;
   background: none;
   border: none;
+  text-shadow: 0px 0px 5px rgba(183, 183, 183, 0.5);
   color: rgba(164, 164, 164, 0.8);
   font-size: 2em;
   cursor: pointer;
@@ -67,7 +69,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 0px;
   transition: max-height 0.3s ease;
   max-height: 0;
   overflow: hidden;
@@ -78,11 +80,14 @@ footer {
 }
 
 .App-nav.close {
-  max-height: 0;
+  transition-delay: 0.5s;
+  max-height: 0px;
 }
 
 .App-nav a {
   color: rgba(164, 164, 164, 0.8);
+  text-shadow: 0px 0px 5px rgba(152, 152, 152, 0.5);
+  text-transform: lowercase;
   text-decoration: none;
   font-size: 1.5em;
   margin: 0 20px;
@@ -92,6 +97,7 @@ footer {
 }
 
 .App-nav.close a {
+  opacity: 0;
   transform: translateY(0px);
 }
 
@@ -116,15 +122,33 @@ footer {
   transition-delay: 0.4s;
 }
 
+.App-nav.close a:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.App-nav.close a:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.App-nav.close a:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.App-nav.close a:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+
+
 /* Media Queries for Mobile Devices */
-@media (max-width: 768px) {
+@media (max-width: 926px) {
   .App-header {
-    font-size: 1.5em;
+    font-size: 1.4em;
   }
 
   .App-image {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
   }
 
   .menu-button {
@@ -133,11 +157,11 @@ footer {
 
   .App-nav a {
     font-size: 1.2em;
-    margin: 0 10px;
+    margin: 0 20px;
   }
 
   footer {
-    font-size: 0.5em;
+    font-size: 0.9em;
     margin-top: 100px;
   }
 }
@@ -145,28 +169,33 @@ footer {
 @media (max-width: 480px) {
   .App-header {
     font-size: 1.2em;
+    padding: 20px;
+    margin-bottom: 20px;
   }
 
   .App-image {
-    width: 150px;
-    height: 150px;
+    width: 50px;
+    height: 50px;
   }
 
   .menu-button {
     font-size: 1.2em;
+
   }
 
   .App-nav {
-    flex-direction: row;
+    flex-direction: column;
+    margin: 5px 0;
+    padding: 10px 0;
   }
 
   .App-nav a {
-    font-size: 1em;
-    margin: 5px 0;
+    font-size: 1.3em;
+    margin: 0 10px;
   }
 
   footer {
-    font-size: 0.4em;
+    font-size: 0.9em;
     margin-top: 50px;
   }
 }

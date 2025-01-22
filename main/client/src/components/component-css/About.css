@@ -8,8 +8,23 @@
     src: url('/public/assets/fonts/Gyrochrome-Bold.otf') format('opentype');
 }
 
+@font-face {
+    font-family: 'fubbick';
+    src: url("/public/assets/fonts/Fubbick.otf") format('opentype');
+}
+
+@font-face {
+    font-family: 'drunk';
+    src: url("/public/assets/fonts/DRUNK.otf") format('opentype');
+}
+
+@font-face {
+    font-family: 'SmglMedium';
+    src: url("/public/assets/fonts/Smgl Medium bold.ttf") format('truetype');
+}
+
 .about-container {
-    font-family: 'Gyrochrome-Bold', sans-serif;
+    font-family: 'fubbick', sans-serif;
 }
 
 .about-container header {
