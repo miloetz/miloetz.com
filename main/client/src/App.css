@@ -9,6 +9,7 @@ html {
   padding: 0;
   height: 100%;
   width: 100%;
+  background-color: rgb(28, 28, 28);
   background: url("/public/assets/pictures/texture_background.jpg") no-repeat center center fixed;
   background-size: cover;
   font-family: 'MyCustomFont', sans-serif;
