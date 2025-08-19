@@ -22,8 +22,6 @@ function Portfolio() {
                 <p>untitled</p>
                 <img src="https://i.imgur.com/LEKBF12.png" alt="Untitled Art" />
                 <p>untitled</p>
-                <img src="https://i.imgur.com/vF3zoSQ.jpeg" alt="Untitled Art" />
-                <p>untitled</p>
                 <img src="https://i.imgur.com/LXYQGIN.jpeg" alt="Untitled Art" />
                 <p>untitled</p>
                 <img src="https://i.imgur.com/j2ZcUGs.jpeg" alt="Untitled Art" />
