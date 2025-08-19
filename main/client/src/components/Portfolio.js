@@ -8,7 +8,7 @@ function Portfolio() {
                 <h1>Portfolio</h1>
                 <img src="/assets/pictures/Milo_Etz_ShapeColorTexture.png" alt="Milo Etz Shape Color Texture" />
                 <p>untitled</p>
-                <img src="https://imgur.com/gallery/portfolio-YukJGh9#uADVDBT" alt="Untitled Art" />
+                <img src="https://i.imgur.com/uADVDBT.gif" alt="Untitled Art" />
                 <p>untitled</p>
             </header>
         </div>
