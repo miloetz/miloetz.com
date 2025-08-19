@@ -46,8 +46,8 @@
 }
 
 .portfolio-container img {
-    width: 70%;
-    height: 50%;
+    width: 700px;
+    height: auto;
     margin-top: 50px;
     border-radius: 0px;
 }
