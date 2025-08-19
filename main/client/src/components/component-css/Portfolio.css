@@ -46,7 +46,7 @@
 }
 
 .portfolio-container img {
-    width: 300px;
+    width: auto;
     height: auto;
     margin-top: 50px;
     border-radius: 0px;
