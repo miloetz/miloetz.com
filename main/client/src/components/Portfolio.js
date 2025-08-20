@@ -11,8 +11,8 @@ function Portfolio() {
                 <img src="https://i.imgur.com/sEeo0As.png" alt="Untitled Art" />
                 <p>A Bad Case of the Addiction</p>
                 <iframe
-                    width="350"
-                    height="197"
+                    width="700"
+                    height="auto"
                     src="https://www.youtube.com/embed/6WJPb-EgvnY"
                     title="YouTube video"
                     frameBorder="0"
