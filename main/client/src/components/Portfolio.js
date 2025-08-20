@@ -12,7 +12,7 @@ function Portfolio() {
                 <p>A Bad Case of the Addiction</p>
                 <iframe
                     width="700"
-                    height="auto"
+                    height="500"
                     src="https://www.youtube.com/embed/6WJPb-EgvnY"
                     title="YouTube video"
                     frameBorder="0"
