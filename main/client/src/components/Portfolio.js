@@ -10,7 +10,15 @@ function Portfolio() {
                 <p>The Creature</p>
                 <img src="https://i.imgur.com/sEeo0As.png" alt="Untitled Art" />
                 <p>A Bad Case of the Addiction</p>
-                <img src="https://youtu.be/6WJPb-EgvnY?si=M94u9wKMY91-buPO" alt="Untitled Art" />
+                <iframe
+                    width="350"
+                    height="197"
+                    src="https://www.youtube.com/embed/6WJPb-EgvnY"
+                    title="YouTube video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                ></iframe>
                 <p>fruit for breakfast</p>
                 <img src="https://i.imgur.com/uADVDBT.gif" alt="Untitled Art" />
                 <p>#37</p>
