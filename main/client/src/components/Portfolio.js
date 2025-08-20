@@ -7,31 +7,31 @@ function Portfolio() {
             <header>
                 <h1>Portfolio</h1>
                 <img src="/assets/pictures/Milo_Etz_ShapeColorTexture.png" alt="Milo Etz Shape Color Texture" />
-                <p>untitled</p>
+                <p>The Creature</p>
                 <img src="https://i.imgur.com/sEeo0As.png" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>A Bad Case of the Addiction</p>
                 <img src="https://i.imgur.com/uADVDBT.gif" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>#37</p>
                 <img src="https://i.imgur.com/iVH6yth.jpeg" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>Gx-1849</p>
                 <img src="https://i.imgur.com/ftYWqU7.png" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>fr0mL3yf3</p>
                 <img src="https://i.imgur.com/zCcVt0P.png" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>Being Nice</p>
                 <img src="https://i.imgur.com/dpV56ta.png" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>Shape Study #3</p>
                 <img src="https://i.imgur.com/LEKBF12.png" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>Music Study #idk</p>
                 <img src="https://i.imgur.com/LXYQGIN.jpeg" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>Untitled</p>
                 <img src="https://i.imgur.com/j2ZcUGs.jpeg" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>Color Theory Study #04</p>
                 <img src="https://i.imgur.com/P2ZjuZZ.jpeg" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>It Hurts</p>
                 <img src="https://i.imgur.com/lpYYsst.jpeg" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>Sand & Ivory</p>
                 <img src="https://i.imgur.com/NemCy9q.jpeg" alt="Untitled Art" />
-                <p>untitled</p>
+                <p>CLASSIFIED</p>
                 <img src="https://i.imgur.com/ePMe9xN.png" alt="Untitled Art" />
             </header>
         </div>
