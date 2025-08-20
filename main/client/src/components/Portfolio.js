@@ -10,6 +10,8 @@ function Portfolio() {
                 <p>The Creature</p>
                 <img src="https://i.imgur.com/sEeo0As.png" alt="Untitled Art" />
                 <p>A Bad Case of the Addiction</p>
+                <img src="https://youtu.be/6WJPb-EgvnY?si=M94u9wKMY91-buPO" alt="Untitled Art" />
+                <p>fruit for breakfast</p>
                 <img src="https://i.imgur.com/uADVDBT.gif" alt="Untitled Art" />
                 <p>#37</p>
                 <img src="https://i.imgur.com/iVH6yth.jpeg" alt="Untitled Art" />
