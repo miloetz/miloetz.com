@@ -31,7 +31,7 @@ function Portfolio() {
                 <img src="https://i.imgur.com/dpV56ta.png" alt="Untitled Art" />
                 <p>Shape Study #3</p>
                 <img src="https://i.imgur.com/LEKBF12.png" alt="Untitled Art" />
-                <p>Music Study #idk</p>
+                <p>Music Study</p>
                 <img src="https://i.imgur.com/LXYQGIN.jpeg" alt="Untitled Art" />
                 <p>Untitled</p>
                 <img src="https://i.imgur.com/j2ZcUGs.jpeg" alt="Untitled Art" />
