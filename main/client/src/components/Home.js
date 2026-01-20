@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { projects, getFeaturedProjects } from '../data/projects';
+import { projects } from '../data/projects';
 import './component-css/Home.css';
 
 function Home() {
