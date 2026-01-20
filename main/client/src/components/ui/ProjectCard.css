@@ -1,0 +1,127 @@
+.project-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-medium);
+}
+
+.project-card:hover {
+  transform: rotate(-0.5deg) scale(1.01);
+}
+
+.project-card-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-secondary);
+}
+
+.project-card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow), filter var(--transition-medium);
+}
+
+.project-card-image-wrapper img.hovered {
+  transform: scale(1.05);
+  filter: contrast(1.1) brightness(1.05);
+}
+
+.project-card-video-thumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.project-card-video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3em;
+  color: var(--text-primary);
+  opacity: 0.8;
+  text-shadow: 0 0 20px var(--shadow-dark);
+  pointer-events: none;
+}
+
+.project-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(28, 28, 28, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+
+.project-card-overlay.visible {
+  opacity: 1;
+}
+
+.view-text {
+  font-family: var(--font-display);
+  font-size: 1.5em;
+  color: var(--accent);
+  text-transform: lowercase;
+}
+
+.view-text::before {
+  content: '★ ';
+  font-size: 0.7em;
+  font-family: 'drunk', sans-serif;
+  display: inline-block;
+  transform: rotate(-15deg);
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+.view-text::after {
+  content: ' ★';
+  font-size: 0.7em;
+  font-family: 'drunk', sans-serif;
+  display: inline-block;
+  transform: rotate(10deg);
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+.project-card-info {
+  padding: var(--space-sm) 0;
+  text-align: left;
+}
+
+.project-card-info h3 {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  font-size: 1.2em;
+  margin: 0 0 var(--space-xs);
+  font-weight: normal;
+}
+
+.project-category {
+  font-size: 0.85em;
+  color: var(--text-secondary);
+  text-transform: lowercase;
+  margin: 0 0 var(--space-xs);
+}
+
+.case-study-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85em;
+  font-family: var(--font-display);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.case-study-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}

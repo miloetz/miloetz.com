@@ -1,53 +1,68 @@
-@font-face {
-    font-family: 'fubbick';
-    src: url("/public/assets/fonts/Fubbick.otf") format('opentype');
+.portfolio {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-@font-face {
-    font-family: 'drunk';
-    src: url("/public/assets/fonts/DRUNK.otf") format('opentype');
+.portfolio h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: lowercase;
+  margin-bottom: var(--space-lg);
 }
 
-@font-face {
-    font-family: 'SmglMedium';
-    src: url("/public/assets/fonts/Smgl Medium bold.ttf") format('truetype');
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
 }
 
-.portfolio-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 0px;
-    font-family: fubbick, sans-serif;
+.portfolio-item {
+  display: block;
+  text-decoration: none;
+  color: var(--text);
+  transition: opacity var(--transition);
 }
 
-.portfolio-container header {
-    text-align: center;
-    color: rgba(164, 164, 164, 0.8);
-    font-size: 1em;
+.portfolio-item:hover {
+  opacity: 0.7;
 }
 
-.portfolio-container h1 {
-    font-size: 2.5em;
-    text-shadow: 0px 0px 20px rgba(33, 33, 33, 0.5);
+.portfolio-item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin-bottom: var(--space-xs);
 }
 
-.portfolio-container h2 {
-    font-size: 1.5em;
-    text-shadow: 0px 0px 10px rgba(90, 90, 90, 0.5);
+.portfolio-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
-.portfolio-container p {
-    padding-left: 200px;
-    padding-right: 200px;
-    text-align: center;
-    color: rgba(164, 164, 164, 0.8);
-    font-size: 1.7em;
+.portfolio-title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: lowercase;
 }
 
-.portfolio-container img {
-    width: 700px;
-    height: auto;
-    margin-top: 50px;
-    border-radius: 0px;
+.portfolio-year {
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .portfolio h1 {
+    font-size: 2.5rem;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
 }

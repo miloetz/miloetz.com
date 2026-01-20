@@ -1,63 +1,81 @@
-@font-face {
-    font-family: 'Gyrochrome-Regular';
-    src: url('/public/assets/fonts/Gyrochrome-Regular.otf') format('opentype');
+.about {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-@font-face {
-    font-family: 'Gyrochrome-Bold';
-    src: url('/public/assets/fonts/Gyrochrome-Bold.otf') format('opentype');
+.about-intro {
+  padding: var(--space-lg) 0;
 }
 
-@font-face {
-    font-family: 'fubbick';
-    src: url("/public/assets/fonts/Fubbick.otf") format('opentype');
+.about-intro h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: lowercase;
+  margin-bottom: var(--space-md);
 }
 
-@font-face {
-    font-family: 'drunk';
-    src: url("/public/assets/fonts/DRUNK.otf") format('opentype');
+.bio {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: var(--space-sm);
 }
 
-@font-face {
-    font-family: 'SmglMedium';
-    src: url("/public/assets/fonts/Smgl Medium bold.ttf") format('truetype');
+.about-skills {
+  padding: var(--space-md) 0;
 }
 
-.about-container {
-    font-family: 'fubbick', sans-serif;
+.about-skills h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: lowercase;
+  margin-bottom: var(--space-sm);
 }
 
-.about-container header {
-    text-align: center;
-    padding: 20px;
-    color: rgba(164, 164, 164, 0.8);
-    font-size: 1em;
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
 }
 
-.about-container h2 {
-    font-size: 2.5em;
-    text-align: center;
-    color: rgba(164, 164, 164, 0.8);
+.skill {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-light);
 }
 
-.about-container p {
-    padding-left: 200px;
-    padding-right: 200px;
-    text-align: center;
-    color: rgba(164, 164, 164, 0.8);
-    font-size: 1.7em;
+.skill::after {
+  content: ' /';
+  color: var(--border);
+}
+
+.skill:last-child::after {
+  content: '';
+}
+
+.about-currently {
+  padding: var(--space-md) 0;
+}
+
+.about-currently h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: lowercase;
+  margin-bottom: var(--space-xs);
+}
+
+.about-currently p {
+  font-size: 1rem;
+  color: var(--text-light);
 }
 
 @media (max-width: 768px) {
+  .about-intro h1 {
+    font-size: 2.5rem;
+  }
 
-    .about-container h2 {
-        font-size: 2em;
-        text-align: center;
-    }
-
-    .about-container p {
-        padding-left: 20px;
-        padding-right: 20px;
-        text-align: center;
-    }
+  .bio {
+    font-size: 1.125rem;
+  }
 }

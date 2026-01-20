@@ -1,0 +1,21 @@
+:root {
+  /* Colors - clean minimal */
+  --bg: #f8f7f4;
+  --text: #1a1a1a;
+  --text-light: #666666;
+  --accent: #1a1a1a;
+  --border: #e0e0e0;
+
+  /* Typography */
+  --font: 'IM Fell DW Pica', serif;
+
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 32px;
+  --space-lg: 64px;
+  --space-xl: 128px;
+
+  /* Transitions */
+  --transition: 0.2s ease;
+}
