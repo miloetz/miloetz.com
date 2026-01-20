@@ -80,7 +80,7 @@ function Home() {
                         I'm a developer and designer based in the United States. I studied computer science with a minor in design, making things that are both functional and beautiful.
                     </p>
                     <p>
-                        When I'm not coding, I'm probably running or working on some art project.
+                        When I'm not coding, I'm probably running or making something.
                     </p>
                 </div>
             </section>
