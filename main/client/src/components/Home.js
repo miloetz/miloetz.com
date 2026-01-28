@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import './component-css/Home.css';
 
 function Home() {
+    const [githubRepos, setGithubRepos] = useState([]);
+    const [loadingRepos, setLoadingRepos] = useState(true);
+
+    useEffect(() => {
+        fetch('https://api.github.com/users/miloetz/repos?sort=updated&per_page=6')
+            .then(res => res.json())
+            .then(data => {
+                const repos = Array.isArray(data) ? data : [];
+                setGithubRepos(repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)));
+                setLoadingRepos(false);
+            })
+            .catch(() => setLoadingRepos(false));
+    }, []);
+
     const skills = [
         'JavaScript', 'TypeScript', 'React', 'Python', 'C++',
         'HTML/CSS', 'Figma', 'Git', 'SQL', 'Node.js'
     ];
 
-    const currentProjects = [
-        {
-            name: 'Personal Portfolio',
-            description: 'This site you\'re looking at right now.',
-            link: null
-        }
-    ];
 
     const colors = ['#cc4444', '#2f4893', '#235223', '#bc8b11'];
     const [letterColors, setLetterColors] = useState(['', '', '', '']);
@@ -40,37 +47,39 @@ function Home() {
     return (
         <div className="home">
             <section className="hero">
-                <h1>
-                    <span
-                        className="letter"
-                        style={{ color: letterColors[0] }}
-                        onMouseEnter={() => handleLetterHover(0)}
-                    >
-                        M
-                    </span>
-                    <span
-                        className="letter"
-                        style={{ color: letterColors[1] }}
-                        onMouseEnter={() => handleLetterHover(1)}
-                    >
-                        i
-                    </span>
-                    <span
-                        className="letter"
-                        style={{ color: letterColors[2] }}
-                        onMouseEnter={() => handleLetterHover(2)}
-                    >
-                        l
-                    </span>
-                    <span
-                        className="letter"
-                        style={{ color: letterColors[3] }}
-                        onMouseEnter={() => handleLetterHover(3)}
-                    >
-                        o
-                    </span>{' '}Etz
-                </h1>
-                <p>Designer & developer based in the United States.</p>
+                <div className="hero-content">
+                    <h1>
+                        <span
+                            className="letter"
+                            style={{ color: letterColors[0] }}
+                            onMouseEnter={() => handleLetterHover(0)}
+                        >
+                            M
+                        </span>
+                        <span
+                            className="letter"
+                            style={{ color: letterColors[1] }}
+                            onMouseEnter={() => handleLetterHover(1)}
+                        >
+                            i
+                        </span>
+                        <span
+                            className="letter"
+                            style={{ color: letterColors[2] }}
+                            onMouseEnter={() => handleLetterHover(2)}
+                        >
+                            l
+                        </span>
+                        <span
+                            className="letter"
+                            style={{ color: letterColors[3] }}
+                            onMouseEnter={() => handleLetterHover(3)}
+                        >
+                            o
+                        </span>{' '}Etz
+                    </h1>
+                    <p>Designer & developer based in the United States.</p>
+                </div>
             </section>
 
             <section className="section">
@@ -88,19 +97,66 @@ function Home() {
             <section className="section">
                 <h2>Current Work.</h2>
                 <div className="section-content">
-                    {currentProjects.map((project, i) => (
-                        <div key={i} className="current-item">
+                    {loadingRepos ? (
+                        <p className="loading-text">Loading...</p>
+                    ) : githubRepos[0] && (
+                        <div className="current-item">
                             <div className="current-header">
-                                <span className="current-name">{project.name}</span>
-                                {project.link && (
-                                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="external-link">
-                                        ↗
-                                    </a>
-                                )}
+                                <span className="current-name">{githubRepos[0].name}</span>
+                                <a href={githubRepos[0].html_url} target="_blank" rel="noopener noreferrer" className="external-link">
+                                    ↗
+                                </a>
                             </div>
-                            <p className="current-description">{project.description}</p>
+                            <p className="current-description">{githubRepos[0].description || 'No description'}</p>
                         </div>
-                    ))}
+                    )}
+                </div>
+            </section>
+
+            <section className="section">
+                <h2>GitHub.</h2>
+                <div className="section-content">
+                    {loadingRepos ? (
+                        <p className="loading-text">Loading repos...</p>
+                    ) : (
+                        <div className="github-grid">
+                            {githubRepos.map(repo => (
+                                <a
+                                    key={repo.id}
+                                    href={repo.html_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="github-card"
+                                >
+                                    <div className="github-card-header">
+                                        <span className="github-repo-name">{repo.name}</span>
+                                        {repo.language && (
+                                            <span className="github-language" data-lang={repo.language.toLowerCase()}>
+                                                {repo.language}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <p className="github-description">
+                                        {repo.description || 'No description'}
+                                    </p>
+                                    <div className="github-stats">
+                                        <span className="github-stat">
+                                            <svg viewBox="0 0 16 16" width="14" height="14">
+                                                <path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/>
+                                            </svg>
+                                            {repo.stargazers_count}
+                                        </span>
+                                        <span className="github-stat">
+                                            <svg viewBox="0 0 16 16" width="14" height="14">
+                                                <path fill="currentColor" d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/>
+                                            </svg>
+                                            {repo.forks_count}
+                                        </span>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
 
