@@ -1,0 +1,111 @@
+.music {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--space-md) 0;
+  text-align: center;
+}
+
+.music h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  text-transform: lowercase;
+  margin-bottom: var(--space-xs);
+  font-family: var(--font);
+}
+
+.music-text {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: var(--space-lg);
+  text-transform: lowercase;
+}
+
+.track-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.track-name {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text);
+  text-transform: lowercase;
+  font-family: var(--font);
+}
+
+.play-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.play-button:hover {
+  opacity: 0.7;
+}
+
+.play-button:focus {
+  outline: none;
+}
+
+.play-button svg {
+  width: 48px;
+  height: 48px;
+}
+
+.player-wrapper {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+.player-wrapper iframe {
+  width: 0;
+  height: 0;
+  border: none;
+}
+
+.music-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+  align-items: center;
+}
+
+.music-link {
+  font-size: 1.125rem;
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--text);
+  text-transform: lowercase;
+  transition: opacity var(--transition);
+  font-family: var(--font);
+}
+
+.music-link:hover {
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .music h1 {
+    font-size: 2rem;
+  }
+
+  .track-name {
+    font-size: 1.125rem;
+  }
+
+  .music-link {
+    font-size: 1rem;
+  }
+}
