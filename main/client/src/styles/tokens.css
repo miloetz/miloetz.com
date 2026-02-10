@@ -1,10 +1,10 @@
 :root {
   /* Colors - clean minimal */
-  --bg: #f8f7f4;
-  --text: #1a1a1a;
-  --text-light: #666666;
+  --bg: #f0d9a8;
+  --text: #0a0a0a;
+  --text-light: #333333;
   --accent: #1a1a1a;
-  --border: #e0e0e0;
+  --border: #d4d2c8;
 
   /* Typography */
   --font: 'IM Fell DW Pica', serif;

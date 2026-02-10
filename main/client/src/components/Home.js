@@ -1,11 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { projects } from '../data/projects';
 import './component-css/Home.css';
 
 function Home() {
     const [githubRepos, setGithubRepos] = useState([]);
     const [loadingRepos, setLoadingRepos] = useState(true);
+
+    // Coding projects carousel state
+    const [currentMediaType, setCurrentMediaType] = useState('video'); // 'video' or 'image'
+    const [isDarkTheme, setIsDarkTheme] = useState(true);
+
+    const codingProjects = [
+        {
+            id: 1,
+            title: 'emrg-docs',
+            description: 'A modern documentation platform with elegant design and seamless user experience.',
+            darkVideo: 'https://i.imgur.com/K5PLAbS.mp4',
+            lightVideo: 'https://i.imgur.com/pbv7jNX.mp4',
+            darkImage: 'https://i.imgur.com/vsWWRes.jpeg',
+            lightImage: 'https://i.imgur.com/UU1c2qR.jpeg',
+            linkUrl: 'https://dev.joinemrg.com/'
+        }
+    ];
+
+    const currentProject = codingProjects[0];
+
+    const handlePrevMedia = () => {
+        setCurrentMediaType((prev) => prev === 'video' ? 'image' : 'video');
+    };
+
+    const handleNextMedia = () => {
+        setCurrentMediaType((prev) => prev === 'video' ? 'image' : 'video');
+    };
+
+    const toggleTheme = () => {
+        setIsDarkTheme((prev) => !prev);
+    };
 
     useEffect(() => {
         fetch('https://api.github.com/users/miloetz/repos?sort=updated&per_page=6')
@@ -25,21 +54,22 @@ function Home() {
 
 
     const colors = ['#cc4444', '#2f4893', '#235223', '#bc8b11'];
-    const [letterColors, setLetterColors] = useState(['', '', '', '']);
+    const [letterStyles, setLetterStyles] = useState(Array(7).fill({ color: '', rotation: 0 }));
 
     const handleLetterHover = (index) => {
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        setLetterColors(prev => {
-            const newColors = [...prev];
-            newColors[index] = randomColor;
-            return newColors;
+        const randomRotation = Math.floor(Math.random() * 31) - 15; // Random rotation between -15 and +15 degrees
+        setLetterStyles(prev => {
+            const newStyles = [...prev];
+            newStyles[index] = { color: randomColor, rotation: randomRotation };
+            return newStyles;
         });
 
         setTimeout(() => {
-            setLetterColors(prev => {
-                const resetColors = [...prev];
-                resetColors[index] = '';
-                return resetColors;
+            setLetterStyles(prev => {
+                const resetStyles = [...prev];
+                resetStyles[index] = { color: '', rotation: 0 };
+                return resetStyles;
             });
         }, 1500);
     };
@@ -51,32 +81,74 @@ function Home() {
                     <h1>
                         <span
                             className="letter"
-                            style={{ color: letterColors[0] }}
+                            style={{ 
+                                color: letterStyles[0].color,
+                                transform: letterStyles[0].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[0].rotation}deg)` : undefined
+                            }}
                             onMouseEnter={() => handleLetterHover(0)}
                         >
                             M
                         </span>
                         <span
                             className="letter"
-                            style={{ color: letterColors[1] }}
+                            style={{ 
+                                color: letterStyles[1].color,
+                                transform: letterStyles[1].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[1].rotation}deg)` : undefined
+                            }}
                             onMouseEnter={() => handleLetterHover(1)}
                         >
                             i
                         </span>
                         <span
                             className="letter"
-                            style={{ color: letterColors[2] }}
+                            style={{ 
+                                color: letterStyles[2].color,
+                                transform: letterStyles[2].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[2].rotation}deg)` : undefined
+                            }}
                             onMouseEnter={() => handleLetterHover(2)}
                         >
                             l
                         </span>
                         <span
                             className="letter"
-                            style={{ color: letterColors[3] }}
+                            style={{ 
+                                color: letterStyles[3].color,
+                                transform: letterStyles[3].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[3].rotation}deg)` : undefined
+                            }}
                             onMouseEnter={() => handleLetterHover(3)}
                         >
                             o
-                        </span>{' '}Etz
+                        </span>{' '}
+                        <span
+                            className="letter"
+                            style={{ 
+                                color: letterStyles[4].color,
+                                transform: letterStyles[4].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[4].rotation}deg)` : undefined
+                            }}
+                            onMouseEnter={() => handleLetterHover(4)}
+                        >
+                            E
+                        </span>
+                        <span
+                            className="letter"
+                            style={{ 
+                                color: letterStyles[5].color,
+                                transform: letterStyles[5].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[5].rotation}deg)` : undefined
+                            }}
+                            onMouseEnter={() => handleLetterHover(5)}
+                        >
+                            t
+                        </span>
+                        <span
+                            className="letter"
+                            style={{ 
+                                color: letterStyles[6].color,
+                                transform: letterStyles[6].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[6].rotation}deg)` : undefined
+                            }}
+                            onMouseEnter={() => handleLetterHover(6)}
+                        >
+                            z
+                        </span>
                     </h1>
                     <p>Designer & developer based in the United States.</p>
                 </div>
@@ -171,23 +243,81 @@ function Home() {
                 </div>
             </section>
 
-            <section className="section">
-                <h2>Selected Work</h2>
+            <section className="section section-coding">
+                <h2>Coding Work</h2>
                 <div className="section-content">
-                    <div className="work-grid">
-                        {projects.map((project) => (
-                            <Link
-                                key={project.id}
-                                to={`/portfolio/${project.slug}`}
-                                className="work-item"
+                    <div className="coding-pill">
+                        <div className="coding-carousel">
+                            <button 
+                                className="carousel-nav carousel-prev" 
+                                onClick={handlePrevMedia}
+                                aria-label="Previous media"
                             >
-                                <img src={project.thumbnail} alt={project.title} />
-                                <div className="work-info">
-                                    <span className="work-title">{project.title}</span>
-                                    <span className="work-year">{project.year}</span>
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <polyline points="15,18 9,12 15,6"></polyline>
+                                </svg>
+                            </button>
+                            
+                            <div className="carousel-content">
+                                <div className="carousel-media">
+                                    {currentMediaType === 'video' ? (
+                                        <video 
+                                            key={`video-${isDarkTheme ? 'dark' : 'light'}`}
+                                            autoPlay 
+                                            muted 
+                                            loop 
+                                            playsInline
+                                            className="carousel-video"
+                                        >
+                                            <source 
+                                                src={isDarkTheme ? currentProject.darkVideo : currentProject.lightVideo} 
+                                                type="video/mp4" 
+                                            />
+                                        </video>
+                                    ) : (
+                                        <img 
+                                            key={`image-${isDarkTheme ? 'dark' : 'light'}`}
+                                            src={isDarkTheme ? currentProject.darkImage : currentProject.lightImage}
+                                            alt={`${currentProject.title} - ${isDarkTheme ? 'Dark' : 'Light'} theme`}
+                                            className="carousel-image"
+                                        />
+                                    )}
                                 </div>
-                            </Link>
-                        ))}
+                                
+                                <button 
+                                    className="theme-toggle" 
+                                    onClick={toggleTheme}
+                                    aria-label={`Switch to ${isDarkTheme ? 'light' : 'dark'} theme`}
+                                >
+                                    <span className="theme-label">{isDarkTheme ? 'dark' : 'light'}</span>
+                                </button>
+                                
+                                <div className="carousel-info">
+                                    <h3 className="carousel-title">
+                                        <a 
+                                            href={currentProject.linkUrl} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="project-link"
+                                        >
+                                            {currentProject.title}
+                                            <span className="external-arrow"> ↗</span>
+                                        </a>
+                                    </h3>
+                                    <p className="carousel-description">{currentProject.description}</p>
+                                </div>
+                            </div>
+                            
+                            <button 
+                                className="carousel-nav carousel-next" 
+                                onClick={handleNextMedia}
+                                aria-label="Next media"
+                            >
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <polyline points="9,18 15,12 9,6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>

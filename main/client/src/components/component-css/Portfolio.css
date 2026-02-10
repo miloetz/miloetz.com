@@ -21,6 +21,8 @@
   text-decoration: none;
   color: var(--text);
   transition: opacity var(--transition);
+  position: relative;
+  z-index: 9999;
 }
 
 .portfolio-item:hover {
@@ -32,6 +34,8 @@
   aspect-ratio: 1;
   object-fit: cover;
   margin-bottom: var(--space-xs);
+  position: relative;
+  z-index: 10000;
 }
 
 .portfolio-info {
