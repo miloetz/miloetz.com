@@ -43,7 +43,7 @@ const ProjectCard = ({ project, onImageClick }) => {
         <p className="project-category">
           {project.category.join(' / ')}
         </p>
-        <Link to={`/portfolio/${project.slug}`} className="case-study-link">
+        <Link to={`/design/${project.slug}`} className="case-study-link">
           read more
         </Link>
       </div>

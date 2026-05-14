@@ -6,12 +6,12 @@ import './component-css/Portfolio.css';
 function Portfolio() {
   return (
     <div className="portfolio">
-      <h1>work.</h1>
+      <h1>design.</h1>
       <div className="portfolio-grid">
         {projects.map(project => (
           <Link
             key={project.id}
-            to={`/portfolio/${project.slug}`}
+            to={`/design/${project.slug}`}
             className="portfolio-item"
           >
             <img src={project.thumbnail} alt={project.title} />
