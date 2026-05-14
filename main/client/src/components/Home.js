@@ -5,36 +5,46 @@ function Home() {
     const [githubRepos, setGithubRepos] = useState([]);
     const [loadingRepos, setLoadingRepos] = useState(true);
 
-    // Coding projects carousel state
-    const [currentMediaType, setCurrentMediaType] = useState('video'); // 'video' or 'image'
-    const [isDarkTheme, setIsDarkTheme] = useState(true);
+    // Coding projects state
+    const [isProjectsExpanded, setIsProjectsExpanded] = useState(false);
 
     const codingProjects = [
+        {
+            id: 5,
+            title: 'rhomedog',
+            description: 'A lifestyle brand in Dallas.',
+            image: '/assets/pictures/rhgomedog.png',
+            linkUrl: 'https://www.rhomedog.com/'
+        },
+        {
+            id: 4,
+            title: 'Thalassaxir',
+            description: 'An Elixir programming language experimental visualizer.',
+            image: '/assets/pictures/thalassaxir.png',
+            linkUrl: 'https://thalassaxir.com/'
+        },
+        {
+            id: 3,
+            title: 'Green Room',
+            description: 'A local music and venue gigging platform.',
+            image: '/assets/greenroom.png',
+            linkUrl: 'https://www.thegrnrm.com/'
+        },
+        {
+            id: 2,
+            title: 'Wild Forest LLC',
+            description: 'Website for a forestry and land management company.',
+            image: '/assets/pictures/wildforest.png',
+            linkUrl: 'https://www.wildforestllc.com/'
+        },
         {
             id: 1,
             title: 'emrg-docs',
             description: 'A modern documentation platform with elegant design and seamless user experience.',
-            darkVideo: 'https://i.imgur.com/K5PLAbS.mp4',
-            lightVideo: 'https://i.imgur.com/pbv7jNX.mp4',
-            darkImage: 'https://i.imgur.com/vsWWRes.jpeg',
-            lightImage: 'https://i.imgur.com/UU1c2qR.jpeg',
+            image: 'https://i.imgur.com/vsWWRes.jpeg',
             linkUrl: 'https://dev.joinemrg.com/'
         }
     ];
-
-    const currentProject = codingProjects[0];
-
-    const handlePrevMedia = () => {
-        setCurrentMediaType((prev) => prev === 'video' ? 'image' : 'video');
-    };
-
-    const handleNextMedia = () => {
-        setCurrentMediaType((prev) => prev === 'video' ? 'image' : 'video');
-    };
-
-    const toggleTheme = () => {
-        setIsDarkTheme((prev) => !prev);
-    };
 
     useEffect(() => {
         fetch('https://api.github.com/users/miloetz/repos?sort=updated&per_page=6')
@@ -87,7 +97,7 @@ function Home() {
                             }}
                             onMouseEnter={() => handleLetterHover(0)}
                         >
-                            M
+                            m
                         </span>
                         <span
                             className="letter"
@@ -127,7 +137,7 @@ function Home() {
                             }}
                             onMouseEnter={() => handleLetterHover(4)}
                         >
-                            E
+                            e
                         </span>
                         <span
                             className="letter"
@@ -167,22 +177,69 @@ function Home() {
             </section>
 
             <section className="section">
+                <h2>Stack.</h2>
+                <div className="section-content">
+                    <div className="skills-grid">
+                        {skills.map((skill, i) => (
+                            <span key={i} className="skill-tag">{skill}</span>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="section">
                 <h2>Current Work.</h2>
                 <div className="section-content">
-                    {loadingRepos ? (
-                        <p className="loading-text">Loading...</p>
-                    ) : githubRepos[0] && (
-                        <div className="current-item">
-                            <div className="current-header">
-                                <span className="current-name">{githubRepos[0].name}</span>
-                                <a href={githubRepos[0].html_url} target="_blank" rel="noopener noreferrer" className="external-link">
-                                    ↗
-                                </a>
-                            </div>
-                            <p className="current-description">{githubRepos[0].description || 'No description'}</p>
+                    <div className="current-item">
+                        <div className="current-header">
+                            <span className="current-name">rhomedog</span>
+                            <a href="https://www.rhomedog.com/" target="_blank" rel="noopener noreferrer" className="external-link">
+                                ↗
+                            </a>
                         </div>
-                    )}
+                        <p className="current-description">A lifestyle brand in Dallas.</p>
+                    </div>
                 </div>
+            </section>
+
+            <section className="section section-coding" id="coding-work">
+                <h2>Coding Work</h2>
+                <div className={`coding-projects-container ${isProjectsExpanded ? 'expanded' : ''}`}>
+                    <div className="section-content">
+                        {codingProjects.map(project => (
+                            <div key={project.id} className="coding-project-item">
+                                <div className="project-media-preview">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="project-thumbnail"
+                                    />
+                                </div>
+                                <div className="project-info-condensed">
+                                    <h3>
+                                        <a
+                                            href={project.linkUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="project-link"
+                                        >
+                                            {project.title}
+                                            <span className="external-arrow"> ↗</span>
+                                        </a>
+                                    </h3>
+                                    <p>{project.description}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    {!isProjectsExpanded && <div className="fade-overlay"></div>}
+                </div>
+                <button
+                    className="show-more-btn"
+                    onClick={() => setIsProjectsExpanded(prev => !prev)}
+                >
+                    {isProjectsExpanded ? 'show less' : 'show more'}
+                </button>
             </section>
 
             <section className="section">
@@ -232,95 +289,6 @@ function Home() {
                 </div>
             </section>
 
-            <section className="section">
-                <h2>Stack.</h2>
-                <div className="section-content">
-                    <div className="skills-grid">
-                        {skills.map((skill, i) => (
-                            <span key={i} className="skill-tag">{skill}</span>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="section section-coding">
-                <h2>Coding Work</h2>
-                <div className="section-content">
-                    <div className="coding-pill">
-                        <div className="coding-carousel">
-                            <button 
-                                className="carousel-nav carousel-prev" 
-                                onClick={handlePrevMedia}
-                                aria-label="Previous media"
-                            >
-                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <polyline points="15,18 9,12 15,6"></polyline>
-                                </svg>
-                            </button>
-                            
-                            <div className="carousel-content">
-                                <div className="carousel-media">
-                                    {currentMediaType === 'video' ? (
-                                        <video 
-                                            key={`video-${isDarkTheme ? 'dark' : 'light'}`}
-                                            autoPlay 
-                                            muted 
-                                            loop 
-                                            playsInline
-                                            className="carousel-video"
-                                        >
-                                            <source 
-                                                src={isDarkTheme ? currentProject.darkVideo : currentProject.lightVideo} 
-                                                type="video/mp4" 
-                                            />
-                                        </video>
-                                    ) : (
-                                        <img 
-                                            key={`image-${isDarkTheme ? 'dark' : 'light'}`}
-                                            src={isDarkTheme ? currentProject.darkImage : currentProject.lightImage}
-                                            alt={`${currentProject.title} - ${isDarkTheme ? 'Dark' : 'Light'} theme`}
-                                            className="carousel-image"
-                                        />
-                                    )}
-                                </div>
-                                
-                                <button 
-                                    className="theme-toggle" 
-                                    onClick={toggleTheme}
-                                    aria-label={`Switch to ${isDarkTheme ? 'light' : 'dark'} theme`}
-                                >
-                                    <span className="theme-label">{isDarkTheme ? 'dark' : 'light'}</span>
-                                </button>
-                                
-                                <div className="carousel-info">
-                                    <h3 className="carousel-title">
-                                        <a 
-                                            href={currentProject.linkUrl} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer"
-                                            className="project-link"
-                                        >
-                                            {currentProject.title}
-                                            <span className="external-arrow"> ↗</span>
-                                        </a>
-                                    </h3>
-                                    <p className="carousel-description">{currentProject.description}</p>
-                                </div>
-                            </div>
-                            
-                            <button 
-                                className="carousel-nav carousel-next" 
-                                onClick={handleNextMedia}
-                                aria-label="Next media"
-                            >
-                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <polyline points="9,18 15,12 9,6"></polyline>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
     );
 }

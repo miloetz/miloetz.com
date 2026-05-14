@@ -1,13 +1,15 @@
 :root {
   /* Colors - clean minimal */
-  --bg: #f0d9a8;
+  --bg: #f5f4f0;
   --text: #0a0a0a;
   --text-light: #333333;
   --accent: #1a1a1a;
-  --border: #d4d2c8;
+  --border: #e5e4e2;
 
   /* Typography */
-  --font: 'IM Fell DW Pica', serif;
+  --font-heading: 'Creato Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Creato Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font: var(--font-body);
 
   /* Spacing */
   --space-xs: 8px;
@@ -18,4 +20,5 @@
 
   /* Transitions */
   --transition: 0.2s ease;
+  --transition-expand: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }

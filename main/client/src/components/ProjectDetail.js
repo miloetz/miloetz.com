@@ -11,14 +11,14 @@ function ProjectDetail() {
     return (
       <div className="project-detail">
         <p>project not found.</p>
-        <Link to="/portfolio" className="back-link">back to work.</Link>
+        <Link to="/design" className="back-link">back to work.</Link>
       </div>
     );
   }
 
   return (
     <div className="project-detail">
-      <Link to="/portfolio" className="back-link">back to work.</Link>
+      <Link to="/design" className="back-link">back to work.</Link>
 
       <header className="project-header">
         <h1>{project.title}.</h1>
