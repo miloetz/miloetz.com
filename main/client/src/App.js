@@ -6,14 +6,6 @@ import Portfolio from './components/Portfolio';
 import ProjectDetail from './components/ProjectDetail';
 import Contact from './components/Contact';
 
-function NavLink({ to, children, onClick }) {
-  return (
-    <Link to={to} onClick={onClick}>
-      {children}
-    </Link>
-  );
-}
-
 function AppContent() {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
