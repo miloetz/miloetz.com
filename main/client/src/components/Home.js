@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './component-css/Home.css';
 
+const HERO_COLORS = ['#cc4444', '#2f4893', '#235223', '#bc8b11'];
+
 function Home() {
-    const colors = ['#cc4444', '#2f4893', '#235223', '#bc8b11'];
     const MOBILE_BREAKPOINT = 768;
     const HERO_LETTER_COUNT = 7;
     const MOBILE_TOP_THRESHOLD = 24;
 
-    const shuffleArray = (items) => {
+    const shuffleArray = useCallback((items) => {
         const shuffled = [...items];
 
         for (let i = shuffled.length - 1; i > 0; i -= 1) {
@@ -16,13 +17,13 @@ function Home() {
         }
 
         return shuffled;
-    };
+    }, []);
 
-    const createBalancedMobileColors = () => {
+    const createBalancedMobileColors = useCallback(() => {
         const balancedColors = [];
 
         while (balancedColors.length < HERO_LETTER_COUNT) {
-            const nextBatch = shuffleArray(colors).filter(
+            const nextBatch = shuffleArray(HERO_COLORS).filter(
                 color => color !== balancedColors[balancedColors.length - 1]
             );
 
@@ -30,17 +31,17 @@ function Home() {
         }
 
         return balancedColors.slice(0, HERO_LETTER_COUNT);
-    };
+    }, [HERO_LETTER_COUNT, shuffleArray]);
 
-    const createRandomLetterStyles = (isMobile = false) => {
+    const createRandomLetterStyles = useCallback((isMobile = false) => {
         const mobileColors = isMobile ? createBalancedMobileColors() : [];
 
         return Array.from({ length: HERO_LETTER_COUNT }, (_, index) => ({
-            color: isMobile ? mobileColors[index] : colors[Math.floor(Math.random() * colors.length)],
+            color: isMobile ? mobileColors[index] : HERO_COLORS[Math.floor(Math.random() * HERO_COLORS.length)],
             rotation: Math.floor(Math.random() * 31) - 15,
             scale: isMobile ? 1.14 : 1.6
         }));
-    };
+    }, [HERO_LETTER_COUNT, createBalancedMobileColors]);
 
     const [githubRepos, setGithubRepos] = useState([]);
     const [loadingRepos, setLoadingRepos] = useState(true);
@@ -133,7 +134,7 @@ function Home() {
         mediaQuery.addEventListener('change', syncLetterStyles);
 
         return () => mediaQuery.removeEventListener('change', syncLetterStyles);
-    }, []);
+    }, [createRandomLetterStyles]);
 
     useEffect(() => {
         if (!isMobileView) {
@@ -161,14 +162,14 @@ function Home() {
         window.addEventListener('scroll', syncScrollState, { passive: true });
 
         return () => window.removeEventListener('scroll', syncScrollState);
-    }, [isMobileView]);
+    }, [createRandomLetterStyles, isMobileView]);
 
     const handleLetterHover = (index) => {
         if (window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches) {
             return;
         }
 
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const randomColor = HERO_COLORS[Math.floor(Math.random() * HERO_COLORS.length)];
         const randomRotation = Math.floor(Math.random() * 31) - 15; // Random rotation between -15 and +15 degrees
         setLetterStyles(prev => {
             const newStyles = [...prev];
