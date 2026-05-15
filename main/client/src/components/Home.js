@@ -305,7 +305,7 @@ function Home() {
             </section>
 
             <section className="section section-coding" id="coding-work">
-                <h2>Coding Work</h2>
+                <h2>WORK.</h2>
                 <div className={`coding-projects-container ${isProjectsExpanded ? 'expanded' : ''}`}>
                     <div className="section-content">
                         {codingProjects.map(project => (
@@ -337,7 +337,8 @@ function Home() {
                     {!isProjectsExpanded && <div className="fade-overlay"></div>}
                 </div>
                 <button
-                    className="show-more-btn"
+                    className={`show-more-btn ${isProjectsExpanded ? 'expanded' : ''}`}
+                    aria-expanded={isProjectsExpanded}
                     onClick={() => setIsProjectsExpanded(prev => !prev)}
                 >
                     {isProjectsExpanded ? 'show less' : 'show more'}
@@ -393,7 +394,8 @@ function Home() {
                     {!isGithubExpanded && <div className="fade-overlay github-fade"></div>}
                 </div>
                 <button
-                    className="show-more-btn github-show-more"
+                    className={`show-more-btn github-show-more ${isGithubExpanded ? 'expanded' : ''}`}
+                    aria-expanded={isGithubExpanded}
                     onClick={() => setIsGithubExpanded(prev => !prev)}
                 >
                     {isGithubExpanded ? 'show less' : 'show more'}
