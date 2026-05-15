@@ -194,6 +194,7 @@ main.scrolled {
 
   .nav-logo {
     height: 14px;
+    display: none !important;
   }
 
   main,
@@ -214,7 +215,7 @@ main.scrolled {
   }
 
   .nav a {
-    font-size: 0.875rem;
+    font-size: 1.65rem;
   }
 
   .nav-logo-link {
@@ -223,7 +224,7 @@ main.scrolled {
   }
 
   .nav-logo {
-    height: 12px;
+    height: 20px;
   }
 
   main,
