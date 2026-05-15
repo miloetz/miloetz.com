@@ -497,6 +497,27 @@
 }
 
 @media (max-width: 768px) {
+  .letter {
+    cursor: default;
+    text-shadow:
+      1px 0 0 currentColor,
+      -1px 0 0 currentColor,
+      0 1px 0 currentColor,
+      0 -1px 0 currentColor,
+      1px 1px 0 currentColor,
+      -1px -1px 0 currentColor,
+      1px -1px 0 currentColor,
+      -1px 1px 0 currentColor,
+      2px 0 0 currentColor,
+      -2px 0 0 currentColor,
+      0 2px 0 currentColor,
+      0 -2px 0 currentColor,
+      2px 2px 0 currentColor,
+      -2px -2px 0 currentColor,
+      2px -2px 0 currentColor,
+      -2px 2px 0 currentColor;
+  }
+
   .home {
     gap: var(--space-lg);
     text-align: center;

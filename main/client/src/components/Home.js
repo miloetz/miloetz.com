@@ -1,9 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './component-css/Home.css';
 
+const HERO_COLORS = ['#cc4444', '#2f4893', '#235223', '#bc8b11'];
+
 function Home() {
+    const MOBILE_BREAKPOINT = 768;
+    const HERO_LETTER_COUNT = 7;
+    const MOBILE_TOP_THRESHOLD = 24;
+
+    const shuffleArray = useCallback((items) => {
+        const shuffled = [...items];
+
+        for (let i = shuffled.length - 1; i > 0; i -= 1) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+
+        return shuffled;
+    }, []);
+
+    const createBalancedMobileColors = useCallback(() => {
+        const balancedColors = [];
+
+        while (balancedColors.length < HERO_LETTER_COUNT) {
+            const nextBatch = shuffleArray(HERO_COLORS).filter(
+                color => color !== balancedColors[balancedColors.length - 1]
+            );
+
+            balancedColors.push(...nextBatch);
+        }
+
+        return balancedColors.slice(0, HERO_LETTER_COUNT);
+    }, [HERO_LETTER_COUNT, shuffleArray]);
+
+    const createRandomLetterStyles = useCallback((isMobile = false) => {
+        const mobileColors = isMobile ? createBalancedMobileColors() : [];
+
+        return Array.from({ length: HERO_LETTER_COUNT }, (_, index) => ({
+            color: isMobile ? mobileColors[index] : HERO_COLORS[Math.floor(Math.random() * HERO_COLORS.length)],
+            rotation: Math.floor(Math.random() * 31) - 15,
+            scale: isMobile ? 1.14 : 1.6
+        }));
+    }, [HERO_LETTER_COUNT, createBalancedMobileColors]);
+
     const [githubRepos, setGithubRepos] = useState([]);
     const [loadingRepos, setLoadingRepos] = useState(true);
+    const [isMobileView, setIsMobileView] = useState(false);
 
     // Coding projects state
     const [isProjectsExpanded, setIsProjectsExpanded] = useState(false);
@@ -63,23 +105,82 @@ function Home() {
         'HTML/CSS', 'Figma', 'Git', 'SQL', 'Node.js'
     ];
 
+    const createDefaultLetterStyles = () => (
+        Array(HERO_LETTER_COUNT).fill({ color: '', rotation: 0, scale: 1 })
+    );
 
-    const colors = ['#cc4444', '#2f4893', '#235223', '#bc8b11'];
-    const [letterStyles, setLetterStyles] = useState(Array(7).fill({ color: '', rotation: 0 }));
+    const [letterStyles, setLetterStyles] = useState(createDefaultLetterStyles());
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
+
+        const syncLetterStyles = (event) => {
+            setIsMobileView(event.matches);
+
+            if (event.matches) {
+                if (window.scrollY <= MOBILE_TOP_THRESHOLD) {
+                    setLetterStyles(createRandomLetterStyles(true));
+                    return;
+                }
+
+                setLetterStyles(createDefaultLetterStyles());
+                return;
+            }
+
+            setLetterStyles(createDefaultLetterStyles());
+        };
+
+        syncLetterStyles(mediaQuery);
+        mediaQuery.addEventListener('change', syncLetterStyles);
+
+        return () => mediaQuery.removeEventListener('change', syncLetterStyles);
+    }, [createRandomLetterStyles]);
+
+    useEffect(() => {
+        if (!isMobileView) {
+            return undefined;
+        }
+
+        let wasAtTop = window.scrollY <= MOBILE_TOP_THRESHOLD;
+
+        const syncScrollState = () => {
+            const isAtTop = window.scrollY <= MOBILE_TOP_THRESHOLD;
+
+            if (isAtTop && !wasAtTop) {
+                wasAtTop = true;
+                setLetterStyles(createRandomLetterStyles(true));
+                return;
+            }
+
+            wasAtTop = isAtTop;
+
+            if (!isAtTop) {
+                setLetterStyles(createDefaultLetterStyles());
+            }
+        };
+
+        window.addEventListener('scroll', syncScrollState, { passive: true });
+
+        return () => window.removeEventListener('scroll', syncScrollState);
+    }, [createRandomLetterStyles, isMobileView]);
 
     const handleLetterHover = (index) => {
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        if (window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches) {
+            return;
+        }
+
+        const randomColor = HERO_COLORS[Math.floor(Math.random() * HERO_COLORS.length)];
         const randomRotation = Math.floor(Math.random() * 31) - 15; // Random rotation between -15 and +15 degrees
         setLetterStyles(prev => {
             const newStyles = [...prev];
-            newStyles[index] = { color: randomColor, rotation: randomRotation };
+            newStyles[index] = { color: randomColor, rotation: randomRotation, scale: 1.6 };
             return newStyles;
         });
 
         setTimeout(() => {
             setLetterStyles(prev => {
                 const resetStyles = [...prev];
-                resetStyles[index] = { color: '', rotation: 0 };
+                resetStyles[index] = { color: '', rotation: 0, scale: 1 };
                 return resetStyles;
             });
         }, 1500);
@@ -94,7 +195,7 @@ function Home() {
                             className="letter"
                             style={{ 
                                 color: letterStyles[0].color,
-                                transform: letterStyles[0].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[0].rotation}deg)` : undefined
+                                transform: letterStyles[0].rotation !== 0 ? `scale(${letterStyles[0].scale}) rotate(${letterStyles[0].rotation}deg)` : undefined
                             }}
                             onMouseEnter={() => handleLetterHover(0)}
                         >
@@ -104,7 +205,7 @@ function Home() {
                             className="letter"
                             style={{ 
                                 color: letterStyles[1].color,
-                                transform: letterStyles[1].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[1].rotation}deg)` : undefined
+                                transform: letterStyles[1].rotation !== 0 ? `scale(${letterStyles[1].scale}) rotate(${letterStyles[1].rotation}deg)` : undefined
                             }}
                             onMouseEnter={() => handleLetterHover(1)}
                         >
@@ -114,7 +215,7 @@ function Home() {
                             className="letter"
                             style={{ 
                                 color: letterStyles[2].color,
-                                transform: letterStyles[2].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[2].rotation}deg)` : undefined
+                                transform: letterStyles[2].rotation !== 0 ? `scale(${letterStyles[2].scale}) rotate(${letterStyles[2].rotation}deg)` : undefined
                             }}
                             onMouseEnter={() => handleLetterHover(2)}
                         >
@@ -124,7 +225,7 @@ function Home() {
                             className="letter"
                             style={{ 
                                 color: letterStyles[3].color,
-                                transform: letterStyles[3].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[3].rotation}deg)` : undefined
+                                transform: letterStyles[3].rotation !== 0 ? `scale(${letterStyles[3].scale}) rotate(${letterStyles[3].rotation}deg)` : undefined
                             }}
                             onMouseEnter={() => handleLetterHover(3)}
                         >
@@ -134,7 +235,7 @@ function Home() {
                             className="letter"
                             style={{ 
                                 color: letterStyles[4].color,
-                                transform: letterStyles[4].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[4].rotation}deg)` : undefined
+                                transform: letterStyles[4].rotation !== 0 ? `scale(${letterStyles[4].scale}) rotate(${letterStyles[4].rotation}deg)` : undefined
                             }}
                             onMouseEnter={() => handleLetterHover(4)}
                         >
@@ -144,7 +245,7 @@ function Home() {
                             className="letter"
                             style={{ 
                                 color: letterStyles[5].color,
-                                transform: letterStyles[5].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[5].rotation}deg)` : undefined
+                                transform: letterStyles[5].rotation !== 0 ? `scale(${letterStyles[5].scale}) rotate(${letterStyles[5].rotation}deg)` : undefined
                             }}
                             onMouseEnter={() => handleLetterHover(5)}
                         >
@@ -154,7 +255,7 @@ function Home() {
                             className="letter"
                             style={{ 
                                 color: letterStyles[6].color,
-                                transform: letterStyles[6].rotation !== 0 ? `scale(1.6) rotate(${letterStyles[6].rotation}deg)` : undefined
+                                transform: letterStyles[6].rotation !== 0 ? `scale(${letterStyles[6].scale}) rotate(${letterStyles[6].rotation}deg)` : undefined
                             }}
                             onMouseEnter={() => handleLetterHover(6)}
                         >
