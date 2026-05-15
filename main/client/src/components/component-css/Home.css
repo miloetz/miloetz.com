@@ -347,6 +347,19 @@
   color: var(--text-light);
 }
 
+/* GitHub container - only collapsible on mobile */
+.github-container {
+  position: relative;
+}
+
+.github-fade {
+  display: none;
+}
+
+.github-show-more {
+  display: none;
+}
+
 /* Coding Projects Faded Container */
 .coding-projects-container {
   position: relative;
@@ -486,22 +499,59 @@
 @media (max-width: 768px) {
   .home {
     gap: var(--space-lg);
+    text-align: center;
   }
 
   .hero {
     padding: var(--space-md) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero h1 {
+    white-space: normal;
+    text-align: center;
   }
 
   .hero p {
     font-size: 1.25rem;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .section-content {
     font-size: 1rem;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .current-item {
+    text-align: center;
+  }
+
+  .current-header {
+    justify-content: center;
   }
 
   .current-name {
     font-size: 1.1rem;
+  }
+
+  .skills-grid {
+    justify-content: center;
   }
 
   .work-grid {
@@ -509,19 +559,51 @@
     gap: var(--space-sm);
   }
 
+  .github-container {
+    max-height: 300px;
+    overflow: hidden;
+    transition: max-height var(--transition-expand);
+  }
+
+  .github-container.expanded {
+    max-height: 2000px;
+  }
+
+  .github-fade {
+    display: block;
+  }
+
+  .github-show-more {
+    display: block;
+    width: 100%;
+  }
+
   .github-grid {
     grid-template-columns: 1fr;
     gap: var(--space-sm);
   }
 
+  .github-card {
+    text-align: left;
+  }
+
   .coding-project-item {
     flex-direction: column;
     gap: var(--space-sm);
+    text-align: center;
+  }
+
+  .project-info-condensed {
+    align-items: center;
   }
 
   .project-media-preview {
     width: 100%;
     max-width: 100%;
+  }
+
+  .show-more-btn {
+    width: 100%;
   }
 }
 

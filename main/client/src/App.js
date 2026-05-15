@@ -7,9 +7,9 @@ import ProjectDetail from './components/ProjectDetail';
 import Contact from './components/Contact';
 
 function AppContent() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,9 +46,8 @@ function AppContent() {
 
   return (
     <div className="app">
-      <div className="grain-layer" aria-hidden="true"></div>
       <div className="content-wrapper">
-        <div className="fixed-logo-container">
+        <div className={`fixed-logo-container ${isScrolled ? 'scrolled' : ''}`}>
           <Link to="/" className="logo" onClick={handleHomeClick}>
             <img src="/assets/miloetzhomebutton.png" alt="Milo Etz" />
           </Link>
@@ -71,7 +70,7 @@ function AppContent() {
           </nav>
         </header>
 
-        <main>
+        <main className={isScrolled ? 'scrolled' : ''}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/design" element={<Portfolio />} />
