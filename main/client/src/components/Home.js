@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import './component-css/Home.css';
 
 const HERO_COLORS = ['#cc4444', '#2f4893', '#235223', '#bc8b11'];
