@@ -13,7 +13,8 @@ function AppContent() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      const threshold = window.innerWidth <= 768 ? 10 : 100;
+      setIsScrolled(window.scrollY > threshold);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -58,7 +59,7 @@ function AppContent() {
             <Link to="/contact">contact</Link>
           </nav>
         </div>
-        <header className="header">
+        <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
           <nav className="nav">
             <Link to="/" onClick={handleHomeClick}>home</Link>
             <a href="/#coding-work" onClick={handleWorkClick}>work</a>
