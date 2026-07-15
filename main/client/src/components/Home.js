@@ -1,57 +1,57 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import './component-css/Home.css';
 
 const HERO_COLORS = ['#cc4444', '#2f4893', '#235223', '#bc8b11'];
 
 function Home() {
-    const MOBILE_BREAKPOINT = 768;
     const HERO_LETTER_COUNT = 7;
-    const MOBILE_TOP_THRESHOLD = 24;
-
-    const shuffleArray = useCallback((items) => {
-        const shuffled = [...items];
-
-        for (let i = shuffled.length - 1; i > 0; i -= 1) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-
-        return shuffled;
-    }, []);
-
-    const createBalancedMobileColors = useCallback(() => {
-        const balancedColors = [];
-
-        while (balancedColors.length < HERO_LETTER_COUNT) {
-            const nextBatch = shuffleArray(HERO_COLORS).filter(
-                color => color !== balancedColors[balancedColors.length - 1]
-            );
-
-            balancedColors.push(...nextBatch);
-        }
-
-        return balancedColors.slice(0, HERO_LETTER_COUNT);
-    }, [HERO_LETTER_COUNT, shuffleArray]);
-
-    const createRandomLetterStyles = useCallback((isMobile = false) => {
-        const mobileColors = isMobile ? createBalancedMobileColors() : [];
-
-        return Array.from({ length: HERO_LETTER_COUNT }, (_, index) => ({
-            color: isMobile ? mobileColors[index] : HERO_COLORS[Math.floor(Math.random() * HERO_COLORS.length)],
-            rotation: Math.floor(Math.random() * 31) - 15,
-            scale: isMobile ? 1.14 : 1.6
-        }));
-    }, [HERO_LETTER_COUNT, createBalancedMobileColors]);
 
     const [githubRepos, setGithubRepos] = useState([]);
     const [loadingRepos, setLoadingRepos] = useState(true);
-    const [isMobileView, setIsMobileView] = useState(false);
 
     // Coding projects state
     const [isProjectsExpanded, setIsProjectsExpanded] = useState(false);
     const [isGithubExpanded, setIsGithubExpanded] = useState(false);
 
+    const caseStudies = [
+        {
+            id: 'trident',
+            title: 'Project Trident',
+            role: 'Feature development & refactoring',
+            description: 'A construction, engineering, and architecture project management webapp, helping build and refactor core features.',
+            image: '/assets/pictures/retro_logo.png',
+            linkUrl: 'https://projecttrident.us/home',
+            isLogo: true,
+            logoClass: 'logo-trident'
+        },
+        {
+            id: 'rhomedog',
+            title: 'rhomeDOG',
+            role: 'Founder',
+            description: 'My own lifestyle brand, currently in startup phase — brand, product, and site all built from scratch.',
+            image: '/assets/pictures/rhgomedog.png',
+            linkUrl: 'https://www.rhomedog.com/'
+        },
+        {
+            id: 'urban-strategy',
+            title: 'Urban Strategy',
+            role: 'Web & document design',
+            description: "I'm currently the survey researcher and field survey tech. I do occasional field work, and mainly focus on product research and light Civil3D work.",
+            image: '/assets/pictures/urban_logo.png',
+            linkUrl: 'https://urbanstrategy.us/',
+            isLogo: true,
+            logoClass: 'logo-urban'
+        }
+    ];
+
     const codingProjects = [
+        {
+            id: 6,
+            title: 'Project Trident',
+            description: 'A construction/engineering/architecture project management webapp.',
+            image: '/assets/pictures/homepage.png',
+            linkUrl: 'https://projecttrident.us/home'
+        },
         {
             id: 5,
             title: 'rhomedog',
@@ -111,64 +111,7 @@ function Home() {
 
     const [letterStyles, setLetterStyles] = useState(createDefaultLetterStyles());
 
-    useEffect(() => {
-        const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
-
-        const syncLetterStyles = (event) => {
-            setIsMobileView(event.matches);
-
-            if (event.matches) {
-                if (window.scrollY <= MOBILE_TOP_THRESHOLD) {
-                    setLetterStyles(createRandomLetterStyles(true));
-                    return;
-                }
-
-                setLetterStyles(createDefaultLetterStyles());
-                return;
-            }
-
-            setLetterStyles(createDefaultLetterStyles());
-        };
-
-        syncLetterStyles(mediaQuery);
-        mediaQuery.addEventListener('change', syncLetterStyles);
-
-        return () => mediaQuery.removeEventListener('change', syncLetterStyles);
-    }, [createRandomLetterStyles]);
-
-    useEffect(() => {
-        if (!isMobileView) {
-            return undefined;
-        }
-
-        let wasAtTop = window.scrollY <= MOBILE_TOP_THRESHOLD;
-
-        const syncScrollState = () => {
-            const isAtTop = window.scrollY <= MOBILE_TOP_THRESHOLD;
-
-            if (isAtTop && !wasAtTop) {
-                wasAtTop = true;
-                setLetterStyles(createRandomLetterStyles(true));
-                return;
-            }
-
-            wasAtTop = isAtTop;
-
-            if (!isAtTop) {
-                setLetterStyles(createDefaultLetterStyles());
-            }
-        };
-
-        window.addEventListener('scroll', syncScrollState, { passive: true });
-
-        return () => window.removeEventListener('scroll', syncScrollState);
-    }, [createRandomLetterStyles, isMobileView]);
-
     const handleLetterHover = (index) => {
-        if (window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches) {
-            return;
-        }
-
         const randomColor = HERO_COLORS[Math.floor(Math.random() * HERO_COLORS.length)];
         const randomRotation = Math.floor(Math.random() * 31) - 15; // Random rotation between -15 and +15 degrees
         setLetterStyles(prev => {
@@ -273,7 +216,7 @@ function Home() {
                         I'm a developer and designer based in the United States. I studied computer science with a minor in design, making things that are both functional and beautiful.
                     </p>
                     <p>
-                        When I'm not coding, I'm probably running or making something.
+                        When I'm not building, I'm probably running or making something.
                     </p>
                 </div>
             </section>
@@ -290,16 +233,30 @@ function Home() {
             </section>
 
             <section className="section">
-                <h2>Current Work.</h2>
+                <h2>Featured Work.</h2>
                 <div className="section-content">
-                    <div className="current-item">
-                        <div className="current-header">
-                            <span className="current-name">rhomedog</span>
-                            <a href="https://www.rhomedog.com/" target="_blank" rel="noopener noreferrer" className="external-link">
-                                ↗
-                            </a>
-                        </div>
-                        <p className="current-description">A lifestyle brand in Dallas.</p>
+                    <div className="case-studies-grid">
+                        {caseStudies.map(project => (
+                            <div key={project.id} className="case-study-card">
+                                <div className={`case-study-media ${project.isLogo ? 'case-study-media-logo' : ''}`}>
+                                    {project.image ? (
+                                        <img src={project.image} alt={project.title} className={project.logoClass || ''} />
+                                    ) : (
+                                        <span className="case-study-initial">{project.title.charAt(0)}</span>
+                                    )}
+                                </div>
+                                <h3>
+                                    {project.linkUrl ? (
+                                        <a href={project.linkUrl} target="_blank" rel="noopener noreferrer" className="project-link">
+                                            {project.title}
+                                            <span className="external-arrow"> ↗</span>
+                                        </a>
+                                    ) : project.title}
+                                </h3>
+                                <p className="case-study-role">{project.role}</p>
+                                <p className="case-study-description">{project.description}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
