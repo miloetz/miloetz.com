@@ -14,7 +14,7 @@ function CaseStudy() {
   if (!study) {
     return (
       <div className="case-study">
-        <p>case study not found.</p>
+        <p>project not found.</p>
         <Link to="/" className="back-link">back home.</Link>
       </div>
     );
