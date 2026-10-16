@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Portfolio from './components/Portfolio';
 import ProjectDetail from './components/ProjectDetail';
 import Contact from './components/Contact';
+import CaseStudy from './components/CaseStudy';
 
 function AppContent() {
   const location = useLocation();
@@ -76,6 +77,7 @@ function AppContent() {
             <Route path="/" element={<Home />} />
             <Route path="/design" element={<Portfolio />} />
             <Route path="/design/:projectSlug" element={<ProjectDetail />} />
+            <Route path="/work/:slug" element={<CaseStudy />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
