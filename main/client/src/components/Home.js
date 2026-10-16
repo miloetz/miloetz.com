@@ -30,7 +30,7 @@ function Home() {
             title: 'rhomeDOG',
             role: 'Founder',
             description: 'A Dallas events and culture platform I designed and built solo: RSVPs and waitlists, member profiles, a Stripe vendor marketplace and a journal.',
-            image: '/assets/pictures/rhgomedog.png',
+            image: '/assets/pictures/rhomedog-landing.png',
             caseStudy: '/work/rhomedog'
         },
         {
@@ -265,7 +265,7 @@ function Home() {
                                     <p className="case-study-previous">{project.previous}</p>
                                 )}
                                 {project.caseStudy && (
-                                    <Link to={project.caseStudy} className="case-study-cta">read case study →</Link>
+                                    <Link to={project.caseStudy} className="case-study-cta">see the work →</Link>
                                 )}
                             </div>
                         ))}
