@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './component-css/Home.css';
 
 const HERO_COLORS = ['#cc4444', '#2f4893', '#235223', '#bc8b11'];
@@ -17,10 +18,10 @@ function Home() {
         {
             id: 'trident',
             title: 'Project Trident',
-            role: 'Feature development & refactoring',
-            description: 'A construction, engineering, and architecture project management webapp, helping build and refactor core features.',
-            image: '/assets/pictures/retro_logo.png',
-            linkUrl: 'https://projecttrident.us/home',
+            role: 'Built at Urban Strategy · Apr 2026 – present',
+            description: 'Project management and billing for AEC firms. I rebuilt the calendar, scheduling, navigation and most of the mobile app: 193 commits and counting.',
+            image: '/assets/trident/trident-lockup.png',
+            caseStudy: '/work/trident',
             isLogo: true,
             logoClass: 'logo-trident'
         },
@@ -28,15 +29,16 @@ function Home() {
             id: 'rhomedog',
             title: 'rhomeDOG',
             role: 'Founder',
-            description: 'My own lifestyle brand, currently in startup phase — brand, product, and site all built from scratch.',
+            description: 'A Dallas events and culture platform I designed and built solo: RSVPs and waitlists, member profiles, a Stripe vendor marketplace and a journal.',
             image: '/assets/pictures/rhgomedog.png',
-            linkUrl: 'https://www.rhomedog.com/'
+            caseStudy: '/work/rhomedog'
         },
         {
             id: 'urban-strategy',
             title: 'Urban Strategy',
-            role: 'Web & document design',
-            description: "I'm currently the survey researcher and field survey tech. I do occasional field work, and mainly focus on product research and light Civil3D work.",
+            role: 'Technical Software Engineer · Apr 2026 – present',
+            description: "I build Project Trident and the firm's internal software, integrations and automation, and support its IT systems.",
+            previous: 'Previously Survey Field Technician (Feb – Apr 2026): led field crews on boundary, topo, ALTA and construction staking surveys with robotic total stations and RTK GNSS, then processed the data in Trimble Business Center and drafted in Civil 3D.',
             image: '/assets/pictures/urban_logo.png',
             linkUrl: 'https://urbanstrategy.us/',
             isLogo: true,
@@ -49,14 +51,14 @@ function Home() {
             id: 6,
             title: 'Project Trident',
             description: 'A construction/engineering/architecture project management webapp.',
-            image: '/assets/pictures/homepage.png',
+            image: '/assets/trident/trident-landing.png',
             linkUrl: 'https://projecttrident.us/home'
         },
         {
             id: 5,
             title: 'rhomedog',
-            description: 'A lifestyle brand in Dallas.',
-            image: '/assets/pictures/rhgomedog.png',
+            description: 'A Dallas events and culture platform.',
+            image: '/assets/pictures/rhomedog-landing.png',
             linkUrl: 'https://www.rhomedog.com/'
         },
         {
@@ -246,7 +248,11 @@ function Home() {
                                     )}
                                 </div>
                                 <h3>
-                                    {project.linkUrl ? (
+                                    {project.caseStudy ? (
+                                        <Link to={project.caseStudy} className="project-link">
+                                            {project.title}
+                                        </Link>
+                                    ) : project.linkUrl ? (
                                         <a href={project.linkUrl} target="_blank" rel="noopener noreferrer" className="project-link">
                                             {project.title}
                                             <span className="external-arrow"> ↗</span>
@@ -255,6 +261,12 @@ function Home() {
                                 </h3>
                                 <p className="case-study-role">{project.role}</p>
                                 <p className="case-study-description">{project.description}</p>
+                                {project.previous && (
+                                    <p className="case-study-previous">{project.previous}</p>
+                                )}
+                                {project.caseStudy && (
+                                    <Link to={project.caseStudy} className="case-study-cta">read case study →</Link>
+                                )}
                             </div>
                         ))}
                     </div>

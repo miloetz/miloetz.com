@@ -173,7 +173,7 @@
 }
 
 .logo-trident {
-  transform: scale(1.8);
+  transform: scale(1);
 }
 
 .logo-urban {
@@ -206,6 +206,31 @@
   color: var(--text);
   margin: 0;
   line-height: 1.5;
+}
+
+.case-study-previous {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin: var(--space-xs) 0 0 0;
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+.case-study-cta {
+  display: inline-block;
+  margin-top: var(--space-xs);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+.case-study-cta:hover {
+  opacity: 0.6;
 }
 
 .work-grid {
